@@ -6,8 +6,11 @@ export const FooterSection = () => {
   // Resources section links
   const resourceLinks = [
     { title: "News", link: "/" },
-    { title: "About Us", link: "/about" },
-    { title: "Make Advertise", link: "/advertise" },
+    { title: "About Us", link: "/" },
+    {
+      title: "Make Advertise",
+      link: "/dashboard/advertise",
+    },
   ];
 
   const termsLinks = [
