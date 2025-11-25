@@ -32,7 +32,7 @@ const CarouselDots = ({ currentIndex, setCurrentIndex, totalItems }) => {
           className={`${getDotSize(
             index
           )} rounded-full transition-all duration-200 ${
-            index === currentIndex ? "bg-black" : "bg-gray-300"
+            index === currentIndex ? "bg-black dark:bg-gray-200" : "bg-gray-300 dark:bg-gray-600"
           }`}
           onClick={() => setCurrentIndex(index)}
         />
@@ -61,8 +61,8 @@ const NavigationArrows = ({ currentIndex, setCurrentIndex, totalItems }) => {
         disabled={!canGoPrev}
         className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
           canGoPrev
-            ? "bg-white border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400"
-            : "bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed"
+            ? "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500"
+            : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
         }`}
       >
         <ChevronLeft className="w-4 h-4" />
@@ -72,8 +72,8 @@ const NavigationArrows = ({ currentIndex, setCurrentIndex, totalItems }) => {
         disabled={!canGoNext}
         className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
           canGoNext
-            ? "bg-white border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400"
-            : "bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed"
+            ? "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500"
+            : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
         }`}
       >
         <ChevronRight className="w-4 h-4" />
@@ -98,7 +98,7 @@ const ReadMoreContent = ({ description, isLoggedIn, onAuthRequired }) => {
   };
 
   if (!shouldShowReadMore) {
-    return <p className="text-gray-600 mb-4">{description}</p>;
+    return <p className="text-foreground/80 mb-4">{description}</p>;
   }
 
   return (
@@ -121,11 +121,11 @@ const ReadMoreContent = ({ description, isLoggedIn, onAuthRequired }) => {
         </Helmet>
       )}
       <div className="mb-4">
-        <p className="text-gray-600">
+        <p className="text-foreground/80">
           {isExpanded ? description : `${truncatedContent}...`}
           <button
             onClick={handleReadMore}
-            className="text-blue-600 cursor-pointer hover:text-blue-800 font-medium text-sm mt-1 transition-colors duration-200 focus:outline-none focus:underline"
+            className="text-blue-600 dark:text-blue-400 cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm mt-1 transition-colors duration-200 focus:outline-none focus:underline"
           >
             {isExpanded ? "Read less" : "Read more >"}
           </button>
@@ -198,24 +198,24 @@ const LiveUpdateCard = ({
         <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-start lg:gap-8 xl:gap-10">
           {/* Content Section */}
           <div className="flex flex-col w-full lg:w-2/5 xl:w-1/3">
-            <div className="font-bold text-xl mb-1">
+            <div className="font-bold text-xl text-foreground mb-1">
               {currentUpdate.category}
             </div>
             <div className="flex justify-start items-center gap-3 mt-2 text-custom-red">
               <TimeIndicator type="live" value={null} />
-              <span className="text-sm">{currentUpdate.timeAgo}</span>
+              <span className="text-sm text-foreground/70">{currentUpdate.timeAgo}</span>
             </div>
-            <h2 className="text-2xl font-bold mb-3">{currentUpdate.title}</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-3">{currentUpdate.title}</h2>
             <ReadMoreContent
               description={currentUpdate.description}
               isLoggedIn={isLoggedIn}
               onAuthRequired={handleAuthRequired}
             />
             <div className="flex items-center mb-4">
-              <button className="text-gray-700 font-medium mr-2">
+              <button className="text-foreground/80 font-medium mr-2">
                 See more updates
               </button>
-              <span className="bg-gray-700 text-white text-xs px-2 py-1 rounded-full">
+              <span className="bg-gray-700 dark:bg-gray-600 text-white dark:text-gray-200 text-xs px-2 py-1 rounded-full">
                 {updates.length}
               </span>
             </div>

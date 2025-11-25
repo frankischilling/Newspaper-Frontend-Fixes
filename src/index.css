@@ -154,12 +154,12 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  /* Custom added colors */
+  /* Custom added colors - dark mode */
   --button-bg: #b32021;
-  --input-bg: #f2f2f2;
-  --placeholder-color: #acacac;
+  --input-bg: oklch(0.269 0 0);
+  --placeholder-color: oklch(0.556 0 0);
   --custom-red: #b32021;
-  --custom-gray: #727272;
+  --custom-gray: #a8a8a8;
   --custom-green: #16a34a;
   --custom-yellow: #ca8a04;
 }
@@ -173,13 +173,19 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Ensure article content has proper text colors */
+  article, .article-content {
+    color: inherit;
+  }
 
   /* Button styling */
 
   /* Input box styling */
   input {
     background-color: var(--input-bg);
-    color: var(--foreground);
+    /* Let Tailwind text-* utilities and parent text color win */
+    color: inherit;
     padding: 0.5rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);

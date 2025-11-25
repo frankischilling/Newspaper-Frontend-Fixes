@@ -251,7 +251,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = "signup" }) {
                     : "opacity-0 translate-y-4"
                 )}
               >
-                <h2 className="text-2xl font-bold">Welcome to AlamoCityPlus!</h2>
+                <h2 className="text-2xl font-bold">Welcome to AlamoCityPulse!</h2>
               </div>
 
               {/* Form Container */}
@@ -268,8 +268,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = "signup" }) {
                   {isForgotPassword
                     ? "Forgot Password"
                     : isSignIn
-                    ? "Sign In Account"
-                    : "Sign Up Account"}
+                    ? "Sign In"
+                    : "Create Account"}
                 </h3>
 
                 {/* Toggle text */}
@@ -375,7 +375,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = "signup" }) {
                     </Label>
                     <Input
                       id="email"
-                      placeholder="Enter your mail address"
+                      placeholder="Enter your email address"
                       className="border-[#c7c7c7] bg-white transition-all duration-200 focus:border-[#00254a] focus:ring-1 focus:ring-[#00254a]"
                       {...form.register("email", {
                         required: "Email is required",
@@ -415,7 +415,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = "signup" }) {
                         <Input
                           id="password"
                           type={showPassword ? "text" : "password"}
-                          placeholder="Enter your Password"
+                          placeholder="Enter your password"
                           className="pr-10 border-[#c7c7c7] bg-white transition-all duration-200 focus:border-[#00254a] focus:ring-1 focus:ring-[#00254a]"
                           {...form.register("password", {
                             required: "Password is required",

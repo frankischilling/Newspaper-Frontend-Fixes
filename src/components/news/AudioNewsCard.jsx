@@ -72,7 +72,7 @@ const AudioNewsCard = ({
       )}
       <div
         className={cn(
-          "flex flex-col md:flex-row border-y border-black py-4 md:py-6",
+          "flex flex-col md:flex-row border-y border-black dark:border-gray-700 py-4 md:py-6",
           className
         )}
       >
@@ -85,26 +85,26 @@ const AudioNewsCard = ({
         <div className="mt-4 md:mt-0 md:ml-4 flex-1 flex flex-col justify-between">
           {/* Category */}
           <div className="flex items-center mb-1">
-            <span className="text-xs font-bold text-gray-800 mr-2">
+            <span className="text-xs font-bold text-foreground/90 mr-2">
               {category}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg md:text-xl font-bold mb-2 line-clamp-2">
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 line-clamp-2">
             {title}
           </h3>
 
           {/* Description */}
           <div className="mb-2">
-            <div className="text-sm text-gray-700">
+            <div className="text-sm text-foreground/80">
               {isExpanded ? description : truncatedContent}
               {!isExpanded && shouldShowReadMore && "..."}
             </div>
             {shouldShowReadMore && (
               <button
                 onClick={handleReadMore}
-                className="mt-1 flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+                className="mt-1 flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200"
               >
                 <BookOpenText size={16} className="mr-1" />
                 {isExpanded ? "Read less" : "Read more"}

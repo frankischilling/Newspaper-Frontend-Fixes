@@ -1,15 +1,25 @@
 import { MessageSquareIcon } from "lucide-react";
 import React from "react";
 import { Card, CardContent } from "../ui/card";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-export const FooterSection = () => {
+export const FooterSection = ({
+  onSetSearchTerm,
+  setAuthModalOpen,
+  setAuthMode,
+  footerRef,
+}) => {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
   // Resources section links
   const resourceLinks = [
     { title: "News", link: "/" },
-    { title: "About Us", link: "/" },
+    { title: "About Us", link: "about" },
     {
-      title: "Make Advertise",
-      link: "/dashboard/advertise",
+      title: "Advertise with Us",
+      link: "advertise",
     },
   ];
 
@@ -20,16 +30,47 @@ export const FooterSection = () => {
 
   // Category section links
   const categoryLinks = [
-    { title: "Breaking News", link: "/" },
-    { title: "Politics", link: "/" },
-    { title: "Business", link: "/" },
-    { title: "Technology", link: "/" },
-    { title: "Sports", link: "/" },
-    { title: "Etc. all", link: "/" },
+    { title: "Breaking News", category: "Breaking News" },
+    { title: "Politics", category: "Politics" },
+    { title: "Business", category: "Business" },
+    { title: "Technology", category: "Technology" },
+    { title: "Sports", category: "Sports" },
+    { title: "all", category: "all" },
   ];
 
+  // Handle resource link clicks
+  const handleResourceClick = (e, link) => {
+    if (link === "about") {
+      e.preventDefault();
+      navigate("/about");
+    } else if (link === "advertise") {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        setAuthMode("signin");
+        setAuthModalOpen(true);
+      } else {
+        navigate("/dashboard/advertise");
+      }
+    }
+  };
+
+  // Handle category link clicks
+  const handleCategoryClick = (e, category) => {
+    e.preventDefault();
+    if (onSetSearchTerm) {
+      onSetSearchTerm(category);
+    }
+  };
+
   return (
-    <section className="flex flex-col w-full lg:flex-row items-start justify-between gap-6 xl:gap-32 p-4 sm:p-6 md:p-8 lg:p-10 bg-[#00254a]">
+    <section
+      ref={footerRef}
+      className="flex flex-col w-full lg:flex-row items-start justify-between gap-6 xl:gap-32 p-4 sm:p-6 md:p-8 lg:p-10 bg-[#00254a] transition-all duration-300"
+      style={{
+        animation: "none",
+      }}
+    >
+
       {/* Left Section */}
       <div className="flex flex-col w-full lg:w-1/2 items-start gap-4 md:gap-6 lg:gap-10">
         <h1 className="self-stretch font-bold text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-[0] leading-tight lg:leading-[78px] font-sans">
@@ -38,17 +79,17 @@ export const FooterSection = () => {
 
         <div className="flex flex-col w-full items-start gap-2.5">
           <h2 className="self-stretch font-semibold text-white text-base sm:text-lg font-sans">
-            Alamocitypulse is a news/blog site that covers local San Antonio
-            news, whether it's new businesses, events, town fairs, we cover it.
+            ALAMOCITYPULSE is a news and blog site that covers local San Antonio
+            news, including new businesses, events, and town fairs. We cover it all.
           </h2>
 
           <p className="self-stretch font-normal text-gray-300 text-sm md:text-base tracking-[0] leading-6 font-sans">
-            We also cover the negative side of news globally. Our primary source
-            of income is coming from paid advertising on our site and
-            memberships. You can pay to have anything as an ad on the site for
-            whatever amount agreed upon. The daily membership allows you to
-            comment and interact with everyone on the site as free accounts
-            don't allow you to.
+            We also cover global news. Our primary source
+            of income comes from paid advertising on our site and
+            memberships. You can pay to place any advertisement on the site for
+            any amount agreed upon. The daily membership allows you to
+            comment and interact with everyone on the site, while free accounts
+            cannot comment.
           </p>
         </div>
 
@@ -80,8 +121,15 @@ export const FooterSection = () => {
                   {resourceLinks.map((link, index) => (
                     <a
                       key={index}
-                      href={link.link}
-                      className="font-normal text-white text-sm lg:text-base tracking-[0] leading-normal font-sans hover:text-gray-300 transition-colors"
+                      href={
+                        link.link === "advertise"
+                          ? "#"
+                          : link.link === "about"
+                          ? "#"
+                          : "/"
+                      }
+                      onClick={(e) => handleResourceClick(e, link.link)}
+                      className="font-normal text-white text-sm lg:text-base tracking-[0] leading-normal font-sans hover:text-gray-300 transition-colors cursor-pointer"
                     >
                       {link.title}
                     </a>
@@ -118,8 +166,11 @@ export const FooterSection = () => {
                   {categoryLinks.map((category, index) => (
                     <React.Fragment key={index}>
                       <a
-                        href={category.link}
-                        className="hover:text-gray-300 transition-colors"
+                        href="#"
+                        onClick={(e) =>
+                          handleCategoryClick(e, category.category)
+                        }
+                        className="hover:text-gray-300 transition-colors cursor-pointer"
                       >
                         {category.title}
                       </a>

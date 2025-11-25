@@ -28,6 +28,7 @@ import { ErrorComponent } from "@/components/news/ErrorComponent";
 import { AdvertisementContainer } from "@/components/advertisements/DynamicAdvertisement";
 import AdPlacement from "@/components/advertisements/AdPlacement";
 import { Button } from "@/components/ui/button";
+import AuthModal from "@/components/auth/AuthModal";
 
 export default function HomePage() {
   const [advertisements, setAdvertisements] = useState([]);
@@ -36,7 +37,8 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState("signup");
   const [searchLoading, setSearchLoading] = useState(false);
 
   // Simple pagination states
@@ -724,18 +726,18 @@ export default function HomePage() {
           setSearchTerm={handleSearchTermChange}
         />
 
-        <main className="w-full mx-auto px-2 md:px-10 py-4 sm:py-8 pt-[150px] md:pt-[180px] lg:pt-[175px]">
+        <main className="w-full mx-auto px-2 md:px-10 py-4 sm:py-8 pt-[150px] md:pt-[180px] lg:pt-[175px] text-foreground">
           <div className="w-full justify-center items-center">
             {isSearching ? (
               <div className="search-results w-full justify-center items-center my-8">
-                <h2 className="text-2xl font-bold mb-4 text-center">
+                <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100">
                   Search Results for "{searchTerm}"
                 </h2>
                 {/* Loading state */}
                 {searchLoading ? (
                   <div className="flex justify-center items-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                    <span className="ml-2 text-gray-600">Searching...</span>
+                    <span className="ml-2 text-gray-600 dark:text-gray-300">Searching...</span>
                   </div>
                 ) : searchResults.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -763,7 +765,7 @@ export default function HomePage() {
                   </div>
                 ) : (
                   <div className="text-center py-8">
-                    <p className="text-center text-gray-600 mb-4">
+                    <p className="text-center text-gray-600 dark:text-gray-300 mb-4">
                       No results found.
                     </p>
                     <div className="flex justify-center">
@@ -962,7 +964,7 @@ export default function HomePage() {
                           Array.isArray(section.sidebarArticles) &&
                           section.sidebarArticles.length > 0 && (
                             <div className="xl:hidden w-full mb-6">
-                              <h4 className="text-md font-semibold text-gray-700 mb-4">
+                              <h4 className="text-md font-semibold text-gray-700 dark:text-gray-300 mb-4">
                                 Trending Now
                               </h4>
                               <div className="space-y-4">
@@ -1064,7 +1066,7 @@ export default function HomePage() {
                           )}
 
                         {/* Desktop Sidebar */}
-                        <div className="xl:block bg-gray-200 rounded-lg p-4 sm:p-6 flex flex-col items-center">
+                        <div className="xl:block bg-gray-200 dark:bg-gray-800 rounded-lg p-4 sm:p-6 flex flex-col items-center">
                           {/* Sidebar Top Ad */}
                           <AdvertisementContainer
                             advertisements={advertisements}
@@ -1079,7 +1081,7 @@ export default function HomePage() {
                             Array.isArray(section.sidebarArticles) &&
                             section.sidebarArticles.length > 0 && (
                               <div className="w-full">
-                                <h4 className="text-md font-semibold text-gray-700 mb-4">
+                                <h4 className="text-md font-semibold text-gray-700 dark:text-gray-300 mb-4">
                                   Trending Now
                                 </h4>
                                 <div className="space-y-4">
@@ -1274,8 +1276,18 @@ export default function HomePage() {
         </main>
       </div>
       <div ref={footerRef}>
-        <FooterSection />
+        <FooterSection
+          onSetSearchTerm={handleSearchTermChange}
+          setAuthModalOpen={setAuthModalOpen}
+          setAuthMode={setAuthMode}
+          footerRef={footerRef}
+        />
       </div>
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authMode}
+      />
     </>
   );
 }

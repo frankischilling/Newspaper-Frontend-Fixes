@@ -15,6 +15,7 @@ import AdvertiseInfo from "../admin/Advertise/AdvertiseInfo";
 import Pricing from "../Pricing/Pricing";
 import PaymentResult from "@/components/common/PaymentResult";
 import TermsAndConditions from "@/components/common/Terms";
+import About from "../About/About";
 
 const HomePage = lazy(() => import("../HomePage"));
 const Profile = lazy(() => import("./../Profile/Profile"));
@@ -35,6 +36,7 @@ const AppRoutes = () => {
         <Route element={<PublicRoute />}>
           <Route element={<AuthLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/payment/success" element={<PaymentResult />} />
             <Route path="/payment/cancel" element={<PaymentResult />} />

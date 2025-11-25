@@ -119,7 +119,7 @@ const StandardArticleCard = ({
       )}
       <div
         className={cn(
-          "rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 bg-white",
+          "rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 bg-white dark:bg-gray-800",
           isHorizontal ? "flex" : "flex-col",
           className
         )}
@@ -155,19 +155,19 @@ const StandardArticleCard = ({
           <div className="w-full bg-custom-red text-white px-2 py-1.5 text-xs font-medium mb-2 self-start">
             {category}
           </div>
-          <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 leading-tight">
+          <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2 line-clamp-2 leading-tight">
             {title}
           </h3>
 
           {description && (
-            <div className="text-gray-600 text-sm mb-3">
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+            <div className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                 {isExpanded ? description : truncatedContent}
                 {!isExpanded && shouldShowReadMore && "... "}
                 {shouldShowReadMore && (
                   <button
                     onClick={handleReadMore}
-                    className="text-blue-400 hover:text-blue-500 cursor-pointer text-sm sm:text-base font-medium transition-colors duration-200 focus:outline-none focus:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer text-sm sm:text-base font-medium transition-colors duration-200 focus:outline-none focus:underline"
                   >
                     {isExpanded ? "Read less" : "Read more"}
                   </button>
@@ -175,7 +175,7 @@ const StandardArticleCard = ({
               </p>
             </div>
           )}
-          <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
+          <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400 mt-auto">
             <div>{publishedTime && <span>{publishedTime}</span>}</div>
             <div>
               <InteractionButtons

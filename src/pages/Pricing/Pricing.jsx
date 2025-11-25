@@ -82,7 +82,7 @@ const Pricing = () => {
                 </span>
               </div>
               <div className="text-2xl md:text-4xl font-bold text-primary mb-2">
-                $4.99<span className="text-lg font-normal">/monthly</span>
+                $4.99<span className="text-lg font-normal">/month</span>
               </div>
             </div>
 
@@ -96,7 +96,7 @@ const Pricing = () => {
               <div className="flex items-start text-left space-x-3">
                 <div className="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
                 <span className="text-sm text-secondary">
-                  Be able to comment and engage with the community
+                  Comment and engage with the community
                 </span>
               </div>
               <div className="flex items-start text-left space-x-3">

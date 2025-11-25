@@ -58,8 +58,8 @@ const InteractionButtons = ({
         className={cn(
           "flex cursor-pointer items-center transition-all duration-200 hover:scale-105",
           isLoved
-            ? "text-red-500 hover:text-red-600"
-            : "text-gray-600 hover:text-red-500",
+            ? "text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300"
+            : "text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400",
           isProcessing && "opacity-50 cursor-not-allowed hover:scale-100"
         )}
         aria-label={isLoved ? "Unlike this article" : "Like this article"}
@@ -82,7 +82,7 @@ const InteractionButtons = ({
       <button
         onClick={handleCommentClick}
         className={cn(
-          "flex cursor-pointer items-center text-gray-600 hover:text-blue-500 transition-all duration-200 hover:scale-105"
+          "flex cursor-pointer items-center text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-200 hover:scale-105"
         )}
         aria-label="View comments"
       >

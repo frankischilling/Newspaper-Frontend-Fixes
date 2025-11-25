@@ -34,12 +34,33 @@ const TabbedNewsSection = ({
   return (
     <div className={`w-full ${className}`}>
       <Tabs defaultValue={defaultTab} className='w-full'>
-        <TabsList className='flex gap-2 items-center mb-5 p-1 bg-transparent md:mx-auto overflow-x-auto'>
+        <TabsList className='flex gap-2 items-center mb-5 p-1 bg-transparent md:mx-auto overflow-x-auto border-b border-border'>
           {activeTabsConfig.map((tab) => (
             <TabsTrigger
               key={tab.key}
               value={tab.key}
-              className='data-[state=active]:h-11 cursor-pointer rounded-md data-[state=active]:py-3 data-[state=active]:px-4 text-custom-gray data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:bg-[#F2F2F2] hover:text-black whitespace-nowrap'
+              className='
+                data-[state=active]:h-11
+                cursor-pointer
+                rounded-md
+                px-3 py-1.5
+                text-sm md:text-base
+                font-medium
+                text-custom-gray dark:text-gray-400
+                hover:text-primary hover:bg-gray-100
+                dark:hover:text-primary-foreground dark:hover:bg-gray-800
+                data-[state=active]:bg-primary
+                data-[state=active]:text-primary-foreground
+                data-[state=active]:font-semibold
+                data-[state=active]:shadow-sm
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-ring
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-background
+                whitespace-nowrap
+                transition-all duration-200
+              '
             >
               {tab.label}
             </TabsTrigger>
@@ -68,14 +89,14 @@ const TabbedNewsSection = ({
                     onPostComment={(commentText) =>
                       onPostComment(article.id, commentText)
                     }
-                    className='bg-white border border-gray-200 hover:shadow-lg transition-shadow duration-200'
+                    className='bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-200'
                   />
                 ))}
               </NewsGrid>
               {articles.length === 0 && (
-                <div className='text-center py-12 text-gray-500'>
+                <div className='text-center py-12 text-gray-500 dark:text-gray-400'>
                   <p className='text-lg'>
-                    No articles available for this section.
+                    No articles are available for this section.
                   </p>
                   <p className='text-sm mt-2'>
                     Please check back later for updates.

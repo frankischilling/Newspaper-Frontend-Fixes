@@ -163,7 +163,7 @@ const CommonNewsCard = ({
         </Helmet>
       )}
       <article
-        className={cn("overflow-hidden pb-4 sm:pb-6 lg:pb-8", className)}
+        className={cn("overflow-hidden pb-4 sm:pb-6 lg:pb-8 text-foreground", className)}
       >
         <div
           className={cn(
@@ -178,42 +178,42 @@ const CommonNewsCard = ({
           {/* Content Section */}
           <div
             className={cn(
-              "flex flex-col w-full",
+              "flex flex-col w-full text-foreground",
               isHorizontal && !isExpanded && image && "lg:w-2/5 xl:w-1/3",
               isExpanded && "w-full"
             )}
           >
             {/* Header Meta Info */}
             <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-              <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+              <div className="flex items-center gap-2 text-sm text-foreground/70 flex-wrap">
                 {source && (
                   <button
                     onClick={handleSourceClick}
-                    className="font-medium text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
+                    className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors cursor-pointer"
                   >
                     {source}
                   </button>
                 )}
                 {source && (publishedDateTime || publishedTime) && (
-                  <span className="text-gray-300">•</span>
+                  <span className="text-gray-300 dark:text-gray-600">•</span>
                 )}
                 {(publishedDateTime || publishedTime) && (
-                  <time className="text-gray-500">
+                  <time className="text-foreground/70">
                     {formatPublishedTime(publishedDateTime || publishedTime)}
                   </time>
                 )}
                 {author && (
                   <>
-                    <span className="text-gray-300">•</span>
-                    <span className="text-gray-600 font-medium">
+                    <span className="text-gray-300 dark:text-gray-600">•</span>
+                    <span className="text-foreground/80 font-medium">
                       By {author}
                     </span>
                   </>
                 )}
                 {category && (
                   <>
-                    <span className="text-gray-300">•</span>
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                    <span className="text-gray-300 dark:text-gray-600">•</span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
                       {category.toUpperCase()}
                     </span>
                   </>
@@ -226,23 +226,23 @@ const CommonNewsCard = ({
               className="mb-3 sm:mb-4 w-full"
             />
 
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">
               {title}
               {isFeatured && (
-                <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+                <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
                   FEATURED
                 </span>
               )}
             </h1>
 
             <div className="mb-3 sm:mb-4">
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
                 {isExpanded ? description : truncatedContent}
                 {!isExpanded && shouldShowReadMore && "... "}
                 {shouldShowReadMore && (
                   <button
                     onClick={handleReadMore}
-                    className="text-blue-600 hover:text-blue-800 cursor-pointer text-sm sm:text-base font-medium mt-2 transition-colors duration-200 focus:outline-none focus:underline inline-flex items-center gap-1"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer text-sm sm:text-base font-medium mt-2 transition-colors duration-200 focus:outline-none focus:underline inline-flex items-center gap-1"
                   >
                     {isExpanded ? (
                       <>
@@ -266,13 +266,13 @@ const CommonNewsCard = ({
                 {tags.slice(0, 4).map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors cursor-pointer"
+                    className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                   >
                     #{tag}
                   </span>
                 ))}
                 {tags.length > 4 && (
-                  <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium text-gray-500">
+                  <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400">
                     +{tags.length - 4} more
                   </span>
                 )}
