@@ -371,13 +371,15 @@ export default function HomePage() {
         return sections;
       }
 
-      const maxSections = Math.min(3, Math.ceil(availableNews.length / 20));
+      // Ensure at least 1 section when there's data, but cap at 3
+      const maxSections = Math.max(
+        1,
+        Math.min(3, Math.ceil(availableNews.length / 20))
+      );
 
-      for (
-        let sectionIndex = 0;
-        sectionIndex < maxSections && availableNews.length > 10;
-        sectionIndex++
-      ) {
+      for (let sectionIndex = 0; sectionIndex < maxSections; sectionIndex++) {
+        // Break if no more articles available
+        if (availableNews.length === 0) break;
         const section = {};
         const sectionNews = shuffleWithLatest([...availableNews], 0, true);
 
